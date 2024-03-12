@@ -1,11 +1,11 @@
 # -*- coding:utf-8 -*-
 import os
 import sys
-
+#System Warningoff
 import warnings
 with warnings.catch_warnings():
     warnings.simplefilter("ignore")
-#pandas warning level
+#Pandas warning off
 import pandas as pd
 pd.options.mode.chained_assignment = None
 
@@ -28,6 +28,7 @@ if __name__ == '__main__':
     flag = 'seq2seq'
 
     dataset_name ='petrobras_Well_A.csv'
+    # dataset_name = 'eddie_sutton.csv'
     Target=['torque']
     Predictor=[
         # 'time',
