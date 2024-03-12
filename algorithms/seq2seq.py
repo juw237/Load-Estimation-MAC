@@ -27,35 +27,42 @@ if __name__ == '__main__':
     args = seq2seq_args_parser()#Seeq2Seq-LSTM
     flag = 'seq2seq'
 
-    dataset_name ='petrobras_Well_A.csv'
-    # dataset_name = 'eddie_sutton.csv'
-    Target=['torque']
-    Predictor=[
-        # 'time',
-        # 'torque',
-        'rotary_speed',
-        # 'ROP',
-        'block_position',
-        'weight_on_hook',
-        'weight_on_bit',
-        # 'SPP',
-        'fluid_flow',
-        'Total pump stoke',
-        # 'total_pit_volume',
-        'heave_bit_depth',
-        'hole_depth_filtered',
-        # 'choke_pressure_filtered',
-        # 'kill_pressure_filtered',
-        # 'trip_tank_volume'
-        'bottom_rotary_speed_filtered',
-        'inclination_filtered'
+    # dataset_name ='petrobras_Well_A.csv'
+    dataset_name = 'eddie_sutton.csv'
+    Target=['Total KW']
+    # Predictor=[
+    #     # 'time',
+    #     # 'torque',
+    #     'rotary_speed',
+    #     # 'ROP',
+    #     'block_position',
+    #     'weight_on_hook',
+    #     'weight_on_bit',
+    #     # 'SPP',
+    #     'fluid_flow',
+    #     'Total pump stoke',
+    #     # 'total_pit_volume',
+    #     'heave_bit_depth',
+    #     'hole_depth_filtered',
+    #     # 'choke_pressure_filtered',
+    #     # 'kill_pressure_filtered',
+    #     # 'trip_tank_volume'
+    #     'bottom_rotary_speed_filtered',
+    #     'inclination_filtered'
+    # ]
+    Predictor = [
+         'Hole Depth (ft)', 'Bit Position (ft)',
+         'Flow In Rate (galUS/min)', 'Pump Pressure (psi)', 'Hook Load (klb)',
+         'Bit Weight (klb)'
     ]
+
+
     if args.include_target:
         args.input_size=len(Predictor)+1
     else:
         args.input_size =len(Predictor)
 
-    Dtr, Val, Dte, m, n,t_train,t_val,t_test = nn_seq_mo(dataset_name,Target,Predictor, args.include_target,args.Train_p, args.Valid_p,args,start=0,end=0.14,resample=args.resample,freq=args.freq,flter_SG=args.Filter_SG,window_length=20,polyorder=5,seq_len=args.seq_len, B=args.batch_size, num=args.output_size)
+    Dtr, Val, Dte, m, n,t_train,t_val,t_test = nn_seq_mo(dataset_name,Target,Predictor, args.include_target,args.Train_p, args.Valid_p,args,start=0,end=1,resample=args.resample,freq=args.freq,flter_SG=args.Filter_SG,window_length=20,polyorder=5,seq_len=args.seq_len, B=args.batch_size, num=args.output_size)
     seq2seq_train(args, Dtr, Val, Seq2Seq_LSTM_PATH)
     y_test,pred_test=seq2seq_test(args, Dte, Seq2Seq_LSTM_PATH, m, n)
     #y,pred,lower,upper=seq2seq_test_100(args, Dte, LSTM_PATH, m, n)
@@ -63,6 +70,8 @@ if __name__ == '__main__':
     #Visulization
     plot_all_diagnal(args,y_test,pred_test)           # Do multiple step prediction but only plot 1 step prediction alone entire test region on single plot.
     plot_one(args, y_test, pred_test, 1)
+    plot_one(args, y_test, pred_test, 20)
+    plot_one(args, y_test, pred_test, 40)
 
     # plot_MAPE_all(args, y_test, pred_test,t_test)
     plot_RMSE_all(args, y_test, pred_test,t_test)     # plot 1 example of multiple step prediction for 1 example with given index on test region
