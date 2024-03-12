@@ -5,17 +5,17 @@ import torch
 # seq2seq
 def seq2seq_args_parser():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--epochs', type=int, default=30, help='input dimension')
-    parser.add_argument('--include_target', type=bool, default=False, help='whether target variable is considered as a predictor')  # number of predictors
+    parser.add_argument('--epochs', type=int, default=40, help='input dimension')
+    parser.add_argument('--include_target', type=bool, default=True, help='whether target variable is considered as a predictor')  # number of predictors
     parser.add_argument('--task', type=str, default='prediction', help='prediction or reconstruction')  # 'prediction' | 'reconstruction'(include_target must = False!)
 
     parser.add_argument('--input_size', type=int, default=5, help='input dimension')  # number of predictors, will change automatically
-    parser.add_argument('--seq_len', type=int, default=12, help='seq len')   #Input time series steps
-    parser.add_argument('--output_size', type=int, default=1, help='output dimension') #predict time series steps
+    parser.add_argument('--seq_len', type=int, default=24, help='seq len')   #Input time series steps
+    parser.add_argument('--output_size', type=int, default=3, help='output dimension') #predict time series steps
 
     parser.add_argument('--hidden_size', type=int, default=64, help='hidden size')    #Hidden size of each LSTM Layer
     parser.add_argument('--num_layers', type=int, default=2, help='num layers')   #Number of LSTM Layers
-    parser.add_argument('--lr', type=float, default=0.1, help='learning rate')
+    parser.add_argument('--lr', type=float, default=0.05, help='learning rate')
     parser.add_argument('--batch_size', type=int, default=32, help='batch size')
     parser.add_argument('--optimizer', type=str, default='adam', help='type of optimizer') #SGD adam
     # parser.add_argument('--device', default=torch.device("cuda" if torch.cuda.is_available() else "cpu")) #If Nvidia Cuda
@@ -36,7 +36,8 @@ def seq2seq_args_parser():
     parser.add_argument('--pred_step_size', type=int, default=60, help='pred step size')
     parser.add_argument('--gamma', type=float, default=0.5, help='gamma')
 
-    parser.add_argument('--Time_column_name', type=str, default='Time s', help='Time_column_name')
+    # parser.add_argument('--Time_column_name', type=str, default='Time s', help='Time_column_name')
+    parser.add_argument('--Time_column_name', type=str, default='Datetime', help='Time_column_name')#Load Estimation
 
     args = parser.parse_args()
 
