@@ -12,8 +12,8 @@ from torch.utils.data import Dataset, DataLoader
 from pickle import dump
 
 # device = torch.device("cuda" if torch.cuda.is_available() else "cpu") # If Nvidia Cuda
-# device= torch.device("mps" if torch.backends.mps.is_available() else "cpu") #If Mac GPU (MPS)
-device ='cpu' # if Mac CPU
+device= torch.device("mps" if torch.backends.mps.is_available() else "cpu") #If Mac GPU (MPS)
+# device ='cpu' # if Mac CPU
 
 def setup_seed(seed):
     os.environ['PYTHONHASHSEED'] = str(seed)

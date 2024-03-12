@@ -51,7 +51,7 @@ def seq2seq_test(args, Dte, path, m, n):
     y, pred = np.array(y), np.array(pred)
     y = (m - n) * y + n
     pred = (m - n) * pred + n
-    print('Test Dataset mape:', get_mape(y, pred))
+    # print('Test Dataset mape:', get_mape(y, pred))
     print('Test Dataset rmse:', get_rmse(y, pred))
     print('Test Dataset r2:', get_R2(y, pred))
 
@@ -99,9 +99,9 @@ def plot_all_diagnal(args,y, pred):
     import matplotlib.pyplot as plt
     plt.figure(figsize=(5, 5))
     pred_size = args.output_size
+    #Plot only 1 step prediction on pred vs true plot with diagnal
     plt.scatter(y[::pred_size], pred[::pred_size], c='green')
     # plt.scatter(y, pred, c='green')
-
     Min_lim=min(min(y[::pred_size]),min(pred[::pred_size]))-5
     Max_lim=max(max(y[::pred_size]),max(pred[::pred_size]))+5
     plt.plot(np.linspace(Min_lim, Max_lim, 20), np.linspace(Min_lim, Max_lim, 20), c="red", marker='.', linestyle=':')
@@ -112,7 +112,7 @@ def plot_all_diagnal(args,y, pred):
     plt.show()
 
 def plot_one(args,y,pred,num):
-    # plot
+    # plot 1 example of multiple step prediction for 1 example with given index on test region
     pred_size=args.output_size
     plt.figure(figsize=(8, 5))
     plt.plot(y[(num-1)*pred_size:num*pred_size], label='GroundTruth')
@@ -121,12 +121,10 @@ def plot_one(args,y,pred,num):
     plt.ylabel("Parameter Values")
     plt.title("One example of prediction on test dataset")
     plt.legend()
-
     plt.show()
 
-
 def plot_onestep_all(args, y, pred,t_test):
-    # plot
+    #Plot only 1 step prediction on same plot alone entire test region
     if args.task=='prediction':
         pred_size = args.output_size
         input_size=args.seq_len

@@ -61,14 +61,15 @@ if __name__ == '__main__':
     #y,pred,lower,upper=seq2seq_test_100(args, Dte, LSTM_PATH, m, n)
 
     #Visulization
-    plot_all_diagnal(args,y_test,pred_test)
-    # plot_one(args, y_test, pred_test, 1)
+    plot_all_diagnal(args,y_test,pred_test)           # Do multiple step prediction but only plot 1 step prediction alone entire test region on single plot.
+    plot_one(args, y_test, pred_test, 1)
 
     # plot_MAPE_all(args, y_test, pred_test,t_test)
-    plot_RMSE_all(args, y_test, pred_test,t_test)
+    plot_RMSE_all(args, y_test, pred_test,t_test)     # plot 1 example of multiple step prediction for 1 example with given index on test region
+
     # plot_R2_all(args, y_test, pred_test,t_test)
 
-    # plot_onestep_all(args, y_test, pred_test,t_test)
+    plot_onestep_all(args, y_test, pred_test,t_test)
     # plot_one_with_confidence(args, y, pred_test, lower, upper, 10)
 
     # #make last 1 prediction
