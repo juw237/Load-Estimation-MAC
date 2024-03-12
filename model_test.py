@@ -21,11 +21,8 @@ from scipy.signal import savgol_filter
 
 from get_data import device, get_mape,get_rmse, get_R2,setup_seed
 from models import Seq2Seq
-
 setup_seed(20)
-# device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-# device= torch.device("mps" if torch.backends.mps.is_available() else "cpu")
-device='cpu'
+
 def seq2seq_test(args, Dte, path, m, n):
     # Make sure m,n are only from Training dataset, no data leakage!!
     # Dtr, Dte, lis1, lis2 = load_data(args, flag, args.batch_size)

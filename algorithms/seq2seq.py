@@ -68,7 +68,7 @@ if __name__ == '__main__':
     plot_RMSE_all(args, y_test, pred_test,t_test)
     # plot_R2_all(args, y_test, pred_test,t_test)
 
-    plot_onestep_all(args, y_test, pred_test,t_test)
+    # plot_onestep_all(args, y_test, pred_test,t_test)
     # plot_one_with_confidence(args, y, pred_test, lower, upper, 10)
 
     # #make last 1 prediction

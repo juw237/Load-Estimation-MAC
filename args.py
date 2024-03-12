@@ -17,9 +17,9 @@ def seq2seq_args_parser():
     parser.add_argument('--lr', type=float, default=0.1, help='learning rate')
     parser.add_argument('--batch_size', type=int, default=32, help='batch size')
     parser.add_argument('--optimizer', type=str, default='adam', help='type of optimizer') #SGD adam
-    # parser.add_argument('--device', default=torch.device("cuda" if torch.cuda.is_available() else "cpu"))
-    # parser.add_argument('--device', default=torch.device("mps" if torch.backends.mps.is_available() else "cpu"))
-    parser.add_argument('--device', default=torch.device("cpu"))
+    # parser.add_argument('--device', default=torch.device("cuda" if torch.cuda.is_available() else "cpu")) #If Nvidia Cuda
+    # parser.add_argument('--device', default=torch.device("mps" if torch.backends.mps.is_available() else "cpu")) If Mac GPU (MPS)
+    parser.add_argument('--device', default=torch.device("cpu")) #If MAC CPU.
 
     parser.add_argument('--weight_decay', type=float, default=1e-4, help='weight decay')
     parser.add_argument('--bidirectional', type=bool, default=True, help='LSTM direction')
