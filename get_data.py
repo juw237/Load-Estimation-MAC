@@ -1,5 +1,4 @@
 # -*- coding:utf-8 -*-
-
 import os
 import random
 
@@ -11,10 +10,10 @@ from scipy.signal import savgol_filter
 from sklearn.metrics import mean_squared_error,r2_score
 from torch.utils.data import Dataset, DataLoader
 from pickle import dump
-# device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-# device= torch.device("mps" if torch.backends.mps.is_available() else "cpu")
-device ='cpu'
-import pickle
+
+# device = torch.device("cuda" if torch.cuda.is_available() else "cpu") # If Nvidia Cuda
+# device= torch.device("mps" if torch.backends.mps.is_available() else "cpu") #If Mac GPU (MPS)
+device ='cpu' # if Mac CPU
 
 def setup_seed(seed):
     os.environ['PYTHONHASHSEED'] = str(seed)
@@ -23,7 +22,6 @@ def setup_seed(seed):
     np.random.seed(seed)
     random.seed(seed)
     torch.backends.cudnn.deterministic = True #lock seed
-
 
 def load_data(file_name):
     """

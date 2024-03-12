@@ -9,10 +9,7 @@ from sklearn.preprocessing import MinMaxScaler
 import get_data
 import pandas as pd
 import numpy as np
-# device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-# device= torch.device("mps" if torch.backends.mps.is_available() else "cpu")
-device='cpu'
-
+from get_data import device
 from models import Seq2Seq
 import pickle
 

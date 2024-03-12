@@ -20,9 +20,6 @@ from get_data import device, setup_seed
 from models import Seq2Seq
 
 setup_seed(20)
-# device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-# device= torch.device("mps" if torch.backends.mps.is_available() else "cpu")
-# device ='cpu'
 
 print('Device=',device)
 

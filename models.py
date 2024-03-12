@@ -4,10 +4,7 @@
 """
 from torch import nn
 import torch
-
-# device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-# device= torch.device("mps" if torch.backends.mps.is_available() else "cpu")
-device='cpu'
+from get_data import device
 
 # class LSTM(nn.Module):
 #     def __init__(self, input_size, hidden_size, num_layers, output_size, batch_size):
